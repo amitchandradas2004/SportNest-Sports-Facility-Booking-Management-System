@@ -31,7 +31,7 @@ const Banner = () => {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute right-5 top-1/2 hidden -translate-y-1/2 text-white/10 lg:block"
+        className="absolute right-5 top-1/2 hidden -translate-y-1/2 text-white/10 md:block"
       >
         <IoFootballOutline size={250} />
       </motion.div>

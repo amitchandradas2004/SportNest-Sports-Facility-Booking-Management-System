@@ -24,7 +24,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-8 md:flex text-xs">
           {!user ? (
             <span className="flex items-center gap-8">
               <Link
@@ -61,7 +61,7 @@ const Navbar = () => {
                 My Bookings
               </Link>
               <Link
-                href="/allFacilities"
+                href="/addFacility"
                 className="font-medium transition hover:text-indigo-600"
               >
                 Add Facility
