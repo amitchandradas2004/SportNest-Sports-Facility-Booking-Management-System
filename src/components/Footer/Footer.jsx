@@ -1,21 +1,65 @@
+"use client";
+
 import Link from "next/link";
 import { IoFootballOutline } from "react-icons/io5";
 import { FaFacebook, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { motion } from "framer-motion";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+    },
+  },
+};
 
 const Footer = () => {
   return (
-    <footer className="border-t bg-white dark:bg-slate-950 text-black">
-      <div className="container mx-auto px-4 py-12">
+    <footer className="border-t bg-white text-black dark:bg-slate-950">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        className="container mx-auto px-4 py-12"
+      >
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
-          {/* Logo & Description */}
-          <div>
+          {/* Logo */}
+          <motion.div variants={itemVariants}>
             <Link
               href="/"
               className="mb-4 flex items-center gap-2 text-indigo-500"
             >
-              <div className="flex h-13 w-13 items-center justify-center rounded-xl border text-3xl">
+              <motion.div
+                animate={{
+                  y: [0, -6, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="flex h-13 w-13 items-center justify-center rounded-xl border text-3xl"
+              >
                 <IoFootballOutline />
-              </div>
+              </motion.div>
+
               <span className="text-3xl font-bold">SportNest</span>
             </Link>
 
@@ -24,51 +68,59 @@ const Footer = () => {
               helps athletes and sports enthusiasts find the perfect place to
               play.
             </p>
-          </div>
+          </motion.div>
 
           {/* Quick Links */}
-          <div>
+          <motion.div variants={itemVariants}>
             <h3 className="mb-4 text-2xl font-semibold dark:text-white">
               Quick Links
             </h3>
 
             <div className="flex flex-col gap-2 dark:text-white">
-              <Link href="/" className="hover:text-indigo-600">
-                Home
-              </Link>
-              <Link href="/allFacilities" className="hover:text-indigo-600">
-                All Facilities
-              </Link>
-              <Link href="/about" className="hover:text-indigo-600">
-                About Us
-              </Link>
-              <Link href="/contact" className="hover:text-indigo-600">
-                Contact
-              </Link>
+              {[
+                ["Home", "/"],
+                ["All Facilities", "/allFacilities"],
+                ["About Us", "/about"],
+                ["Contact", "/contact"],
+              ].map(([title, href]) => (
+                <motion.div key={title} whileHover={{ x: 2 }}>
+                  <Link
+                    href={href}
+                    className="transition-colors hover:text-indigo-600"
+                  >
+                    {title}
+                  </Link>
+                </motion.div>
+              ))}
             </div>
-          </div>
+          </motion.div>
 
-          {/* User Links */}
-          <div>
+          {/* Account */}
+          <motion.div variants={itemVariants}>
             <h3 className="mb-4 text-2xl font-semibold dark:text-white">
               My Account
             </h3>
 
-            <div className="flex flex-col gap-2 opacity-80 dark:text-white">
-              <Link href="/myBookings" className="hover:text-indigo-600">
-                My Bookings
-              </Link>
-              <Link href="/addFacility" className="hover:text-indigo-600">
-                Add Facility
-              </Link>
-              <Link href="/manageFacilities" className="hover:text-indigo-600">
-                Manage Facilities
-              </Link>
+            <div className="flex flex-col gap-2 dark:text-white">
+              {[
+                ["My Bookings", "/myBookings"],
+                ["Add Facility", "/addFacility"],
+                ["Manage Facilities", "/manageFacilities"],
+              ].map(([title, href]) => (
+                <motion.div key={title} whileHover={{ x: 2 }}>
+                  <Link
+                    href={href}
+                    className="transition-colors hover:text-indigo-600"
+                  >
+                    {title}
+                  </Link>
+                </motion.div>
+              ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Contact */}
-          <div>
+          <motion.div variants={itemVariants}>
             <h3 className="mb-4 text-2xl font-semibold dark:text-white">
               Contact
             </h3>
@@ -79,31 +131,38 @@ const Footer = () => {
               <p>+880 1234-567890</p>
             </div>
 
-            <div className="mt-5 flex gap-4 text-xl">
-              <Link href="/">
-                <FaFacebook />
-              </Link>
-
-              <Link href="/">
-                <FaInstagram />
-              </Link>
-
-              <Link href="/">
-                <FaLinkedin />
-              </Link>
-
-              <Link href="/">
-                <FaGithub />
-              </Link>
+            <div className="mt-5 flex gap-5 text-2xl">
+              {[FaFacebook, FaInstagram, FaLinkedin, FaGithub].map(
+                (Icon, index) => (
+                  <motion.div
+                    key={index}
+                    whileHover={{
+                      y: -5,
+                      scale: 1.2,
+                    }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                    }}
+                  >
+                    <Link href="/">
+                      <Icon />
+                    </Link>
+                  </motion.div>
+                ),
+              )}
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Bottom */}
-        <div className="mt-10 border-t border-slate-800 pt-6 text-center text-sm text-slate-500">
+        <motion.div
+          variants={itemVariants}
+          className="mt-10 border-t border-slate-200 pt-6 text-center text-sm text-slate-500 dark:border-slate-800"
+        >
           © {new Date().getFullYear()} SportNest. All rights reserved.
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </footer>
   );
 };
