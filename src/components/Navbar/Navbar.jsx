@@ -8,9 +8,9 @@ import UserDropdown from "./UserDropDown";
 import { TiThMenu } from "react-icons/ti";
 import { ThemeToggle } from "../ThemeToggle";
 const Navbar = () => {
-  const user = false;
+  const user = true;
   return (
-    <header className="fixed top-0 left-0 z-50 w-full backdrop-blur-xl shadow-xl border-b border-white/10 bg-white/10">
+    <header className="fixed top-0 left-0 z-50 w-full backdrop-blur-xl shadow-xl border-b border-white/10 bg-white dark:bg-black">
       <nav className="mx-auto flex h-13 container items-center justify-between  px-6 ">
         {/* Logo */}
         <Link
