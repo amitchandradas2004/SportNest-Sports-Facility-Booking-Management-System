@@ -42,7 +42,7 @@ const stats = [
 
 export default function LiveStats() {
   return (
-    <section className="w-full py-12 dark:bg-slate-950">
+    <section className="w-full py-20 dark:bg-slate-950">
       <div className="container mx-auto px-4">
         {/* Title */}
         <motion.div
@@ -52,7 +52,7 @@ export default function LiveStats() {
           transition={{ duration: 0.6 }}
           className="text-center mb-10"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white">
             SportNest in Numbers
           </h2>
           <p className="mt-3 text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">

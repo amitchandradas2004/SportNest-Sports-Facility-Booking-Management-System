@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { IoFootballOutline } from "react-icons/io5";
+import { Button } from "@heroui/react";
 
 const NotFoundPage = () => {
   return (
@@ -61,18 +62,18 @@ const NotFoundPage = () => {
         transition={{ delay: 0.6 }}
         className="mt-8 flex flex-wrap justify-center gap-4"
       >
-        <Link
-          href="/"
-          className="rounded-xl bg-indigo-600 px-6 py-3 font-semibold text-white shadow-lg transition hover:bg-indigo-700"
-        >
-          Back Home
+        <Link href="/">
+          <Button className={"bg-indigo-600 w-40 h-10"}> Back Home</Button>
         </Link>
 
-        <Link
-          href="/allFacilities"
-          className="rounded-xl border border-slate-300 bg-white px-6 py-3 font-semibold text-slate-700 transition hover:bg-slate-100"
-        >
-          Explore Facilities
+        <Link href="/allFacilities">
+          <Button
+            className={
+              "rounded-full border border-slate-300 bg-white  text-slate-700 transition hover:bg-slate-100 w-40 h-10"
+            }
+          >
+            Explore Facilities
+          </Button>
         </Link>
       </motion.div>
 
