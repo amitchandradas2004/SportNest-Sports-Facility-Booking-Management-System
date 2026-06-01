@@ -1,6 +1,7 @@
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
+import { Providers } from "@/app/Providers";
 
 const opensans = Open_Sans({
   variable: "--font-open-sans",
@@ -14,14 +15,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html
+      suppressHydrationWarning
       lang="en"
       data-theme="light"
       className={` ${opensans.className} } h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <main>
-          <Navbar />
-          {children}
+          <Providers>
+            <Navbar />
+            {children}
+          </Providers>
         </main>
       </body>
     </html>

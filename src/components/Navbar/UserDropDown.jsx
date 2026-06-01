@@ -2,6 +2,7 @@ import { Button, Dropdown, Separator } from "@heroui/react";
 import Link from "next/link";
 import { FaUserAlt } from "react-icons/fa";
 import { LuLogOut } from "react-icons/lu";
+import { ThemeToggle } from "../ThemeToggle";
 
 const UserDropdown = () => (
   <Dropdown>
@@ -70,7 +71,10 @@ const UserDropdown = () => (
           </Link>
         </Dropdown.Item>
 
-        <Dropdown.Item id="theme">Theme</Dropdown.Item>
+        <Dropdown.Item id="theme">
+          {" "}
+          <ThemeToggle />
+        </Dropdown.Item>
         <Separator />
         <Dropdown.Item className="text-red-400">
           Logout <LuLogOut />
