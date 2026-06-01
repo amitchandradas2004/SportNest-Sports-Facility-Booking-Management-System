@@ -1,13 +1,15 @@
 import FacilityCard from "@/components/FacilityCard";
-import { motion } from "framer-motion";
-
+export const metadata = {
+  title: "Sportnest || All Facilities",
+  description: "SportNest All Facilities Page",
+};
 const AllFacilitiesPage = async () => {
   const res = await fetch(`http://localhost:5000/facility`);
   const facilitys = await res.json();
   // console.log(facilitys);
 
   return (
-    <div className="mt-20 container mx-auto">
+    <div className="py-20 container mx-auto px-3 md:px-0">
       <div className="text-center space-y-3 overflow-hidden">
         <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold animate-fadeUp">
           All Facilities

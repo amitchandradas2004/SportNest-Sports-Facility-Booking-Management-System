@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button, Chip } from "@heroui/react";
 import { MapPin, Users, Clock3, CalendarCheck } from "lucide-react";
+import { HiMiniArrowTopRightOnSquare } from "react-icons/hi2";
 
 const FacilityCard = ({ facility }) => {
   const {
@@ -69,8 +70,10 @@ const FacilityCard = ({ facility }) => {
         <p className="line-clamp-2 text-sm text-gray-600">{description}</p>
 
         {/* Button */}
-        <Link href={`/facilities/${_id}`}>
-          <Button className="mt-2 w-full bg-indigo-600">Book Now</Button>
+        <Link href={`/allFacilities/${_id}`}>
+          <Button className="mt-2 w-full bg-indigo-600 hover:bg-indigo-700 items-center">
+            Book Now <HiMiniArrowTopRightOnSquare />
+          </Button>
         </Link>
       </div>
     </motion.div>
