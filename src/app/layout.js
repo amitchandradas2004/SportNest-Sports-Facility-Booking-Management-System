@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import { Providers } from "@/app/Providers";
 import Footer from "@/components/Footer/Footer";
+import { Toaster } from "react-hot-toast";
 
 const opensans = Open_Sans({
   variable: "--font-open-sans",
@@ -25,7 +26,8 @@ export default function RootLayout({ children }) {
         <main>
           <Providers>
             <Navbar />
-            {children}
+            <main> {children}</main>
+            <Toaster position="top-center" />
             <Footer />
           </Providers>
         </main>

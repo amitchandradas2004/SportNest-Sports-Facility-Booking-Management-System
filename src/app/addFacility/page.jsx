@@ -11,7 +11,8 @@ import {
   TextArea,
   TextField,
 } from "@heroui/react";
-import { FaPlus } from "react-icons/fa";
+
+import toast from "react-hot-toast";
 
 const AddFacilityPage = () => {
   const onSubmit = async (e) => {
@@ -26,8 +27,8 @@ const AddFacilityPage = () => {
       body: JSON.stringify(facility),
     });
     const data = await res.json();
-    console.log(data);
-    alert("facility submitted");
+    // console.log(data);
+    toast.success(`Facility added`);
   };
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 py-24 px-4">
