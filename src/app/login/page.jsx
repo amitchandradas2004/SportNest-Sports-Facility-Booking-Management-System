@@ -43,7 +43,6 @@ const itemVariants = {
 
 const LoginPage = () => {
   const [isVisible, setIsVisible] = useState(false);
-
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -52,9 +51,6 @@ const LoginPage = () => {
       email: user.email,
       password: user.password,
     });
-
-    // console.log(data, error);
-
     if (data) {
       toast.success(
         `${data.user.name}, you have successfully logged in your account.`,

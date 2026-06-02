@@ -1,44 +1,49 @@
-"use client";
-
 import { AlertDialog, Button } from "@heroui/react";
-import { redirect } from "next/navigation";
 import toast from "react-hot-toast";
-import { MdDeleteForever } from "react-icons/md";
+import { MdOutlineCancel } from "react-icons/md";
 
-export function DeleteFacility({ facility }) {
-  const { _id, name } = facility;
-  const handleFacilityDelete = async () => {
-    const res = await fetch(`http://localhost:5000/facility/${_id}`, {
+export function DeleteBooking({ booking }) {
+  const { _id, facility_name } = booking;
+
+  const handleBookingDelete = async () => {
+    const res = await fetch(`http://localhost:5000/booking/${_id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
       },
     });
     const data = await res.json();
-
-    toast.success(`${name} is successfully deleted.`);
-    redirect("/allFacilities");
+    if (data.deletedCount > 0) {
+      toast.success(
+        `${facility_name} is deleted from your bookings permanently`,
+      );
+      window.location.reload();
+    }
   };
+
   return (
     <AlertDialog>
-      <Button variant="danger" className={"w-full"}>
-        <MdDeleteForever />
-        Delete
+      <Button
+        variant="danger"
+        className="flex items-center gap-2 w-full md:w-30 lg:w-50"
+      >
+        <MdOutlineCancel />
+        Delete{" "}
       </Button>
       <AlertDialog.Backdrop>
         <AlertDialog.Container>
-          <AlertDialog.Dialog className="sm:max-w-100">
+          <AlertDialog.Dialog className="w-100">
             <AlertDialog.CloseTrigger />
             <AlertDialog.Header>
               <AlertDialog.Icon status="danger" />
-
               <AlertDialog.Heading>
-                Delete facility permanently?
+                Delete &quot;{booking.facility_name}&quot; Permanently?
               </AlertDialog.Heading>
             </AlertDialog.Header>
             <AlertDialog.Body>
               <p>
-                This will permanently delete <strong>{name}</strong> and all of
+                This will permanently delete{" "}
+                <strong>&quot;{booking.facility_name}&quot;</strong> and all of
                 its data. This action cannot be undone.
               </p>
             </AlertDialog.Body>
@@ -47,11 +52,11 @@ export function DeleteFacility({ facility }) {
                 Cancel
               </Button>
               <Button
-                onClick={handleFacilityDelete}
+                onClick={handleBookingDelete}
                 slot="close"
                 variant="danger"
               >
-                Delete Facility
+                Delete
               </Button>
             </AlertDialog.Footer>
           </AlertDialog.Dialog>

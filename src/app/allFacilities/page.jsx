@@ -6,7 +6,6 @@ export const metadata = {
 const AllFacilitiesPage = async () => {
   const res = await fetch(`http://localhost:5000/facility`);
   const facilitys = await res.json();
-  // console.log(facilitys);
 
   return (
     <div className="py-20 container mx-auto px-3 md:px-0">

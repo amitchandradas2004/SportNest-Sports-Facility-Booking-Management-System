@@ -5,9 +5,8 @@ import { MdLocationPin, MdOutlineCancel } from "react-icons/md";
 import { SlCalender } from "react-icons/sl";
 import { IoIosTimer } from "react-icons/io";
 import { IoPricetagsOutline } from "react-icons/io5";
-import { Button } from "@heroui/react";
+import { DeleteBooking } from "./DeleteBooking";
 const BookingCard = ({ booking }) => {
-  console.log(booking);
   const formattedDate = new Date(booking?.booking_date).toLocaleDateString(
     "en-US",
     {
@@ -67,13 +66,7 @@ const BookingCard = ({ booking }) => {
           </div>
 
           {/* Right Section */}
-          <Button
-            variant="danger"
-            className="flex items-center gap-2 w-full md:w-30 lg:w-50"
-          >
-            <MdOutlineCancel />
-            Cancel{" "}
-          </Button>
+          <DeleteBooking booking={booking} />
         </div>
       </motion.div>
     </div>

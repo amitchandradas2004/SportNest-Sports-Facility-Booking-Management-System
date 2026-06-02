@@ -28,7 +28,6 @@ const AddFacilityPage = () => {
       body: JSON.stringify(facility),
     });
     const data = await res.json();
-    // console.log(data);
     toast.success(`Facility added`);
     redirect("/allFacilities");
   };

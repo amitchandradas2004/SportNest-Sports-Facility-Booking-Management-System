@@ -5,7 +5,6 @@ const FacilityDetailsPage = async ({ params }) => {
 
   const res = await fetch(`http://localhost:5000/facility/${id}`);
   const facility = await res.json();
-  // console.log(facility);
 
   return (
     <div className="mt-10">
