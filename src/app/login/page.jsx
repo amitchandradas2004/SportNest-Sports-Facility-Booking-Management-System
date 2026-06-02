@@ -18,6 +18,8 @@ import { Eye, EyeSlash } from "@gravity-ui/icons";
 import { motion } from "framer-motion";
 import { AiOutlineMail } from "react-icons/ai";
 import { FaLink, FaLock } from "react-icons/fa6";
+import { GrLogin } from "react-icons/gr";
+import { IoMdLogIn } from "react-icons/io";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -38,7 +40,7 @@ const itemVariants = {
   },
 };
 
-const RegisterPage = () => {
+const LoginPage = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const onSubmit = async (e) => {
@@ -47,14 +49,14 @@ const RegisterPage = () => {
     const user = Object.fromEntries(formData.entries());
     console.log(user, "User");
 
-    const { data, error } = await authClient.signUp.email({
-      email: user.email,
-      name: user.name,
-      password: user.password,
-      image: user.image,
-    });
+    // const { data, error } = await authClient.signUp.email({
+    //   email: user.email,
+    //   name: user.name,
+    //   password: user.password,
+    //   image: user.image,
+    // });
 
-    console.log(data, error);
+    // console.log(data, error);
 
     // if (data) {
     //   toast.success(
@@ -95,7 +97,7 @@ const RegisterPage = () => {
             variants={itemVariants}
             className="font-bold text-center text-2xl"
           >
-            Register your account
+            Login your account
           </motion.h2>
 
           <motion.div
@@ -104,23 +106,6 @@ const RegisterPage = () => {
             animate="show"
             className="space-y-4"
           >
-            {/* Name */}
-            <motion.div variants={itemVariants}>
-              <TextField name="name" type="text" isRequired>
-                <Label>Full Name</Label>
-                <InputGroup className="rounded-full overflow-hidden">
-                  {/* ICON INSIDE INPUT */}
-                  <InputGroup.Prefix className="pl-3 text-gray-400">
-                    <User size={14} />
-                  </InputGroup.Prefix>
-
-                  <InputGroup.Input placeholder="Enter your name" />
-                </InputGroup>
-
-                <FieldError />
-              </TextField>
-            </motion.div>
-
             {/* Email */}
             <motion.div variants={itemVariants}>
               <TextField name="email" type="email" isRequired>
@@ -134,18 +119,6 @@ const RegisterPage = () => {
               </TextField>
             </motion.div>
 
-            {/* Image */}
-            <motion.div variants={itemVariants}>
-              <TextField name="image" type="url" isRequired>
-                <Label>Photo URL</Label>
-                <InputGroup className={"rounded-full overflow-hidden"}>
-                  <InputGroup.Prefix className="pl-3 text-gray-400">
-                    <FaLink size={14} />
-                  </InputGroup.Prefix>
-                  <InputGroup.Input placeholder="Enter photo URL" />
-                </InputGroup>
-              </TextField>
-            </motion.div>
             {/* Password */}
             <motion.div variants={itemVariants}>
               <TextField name="password" type="password" isRequired>
@@ -177,19 +150,18 @@ const RegisterPage = () => {
                 type="submit"
                 className="w-full bg-indigo-600 rounded-full"
               >
-                <Check /> Register
+                <IoMdLogIn />
+                Login
               </Button>
             </motion.div>
           </motion.div>
 
-          {/* Divider */}
           <div className="flex items-center gap-2 text-xs text-gray-500">
             <div className="flex-1 h-px bg-gray-300" />
             OR CONTINUE WITH
             <div className="flex-1 h-px bg-gray-300" />
           </div>
 
-          {/* Google Button */}
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
             <Button className="w-full rounded-full border hover:bg-indigo-600">
               <FcGoogle size={20} />
@@ -197,11 +169,10 @@ const RegisterPage = () => {
             </Button>
           </motion.div>
 
-          {/* Login link */}
           <p className="text-center text-sm">
-            Already have an account?{" "}
-            <Link href="/login" className="text-red-500">
-              Login
+            Do not have an account?{" "}
+            <Link href="/signUp" className="text-red-500">
+              Register
             </Link>
           </p>
         </Form>
@@ -210,4 +181,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+export default LoginPage;
