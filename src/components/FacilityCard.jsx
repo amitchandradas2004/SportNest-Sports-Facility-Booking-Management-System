@@ -4,11 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button, Chip } from "@heroui/react";
-import { MapPin, Users, Clock3, CalendarCheck } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { HiMiniArrowTopRightOnSquare } from "react-icons/hi2";
 
 const FacilityCard = ({ facility }) => {
- 
   const {
     _id,
     name,
