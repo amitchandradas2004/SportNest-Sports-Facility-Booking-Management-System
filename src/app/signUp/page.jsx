@@ -18,6 +18,7 @@ import { Eye, EyeSlash } from "@gravity-ui/icons";
 import { motion } from "framer-motion";
 import { AiOutlineMail } from "react-icons/ai";
 import { FaLink, FaLock } from "react-icons/fa6";
+import { redirect } from "next/navigation";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -45,7 +46,6 @@ const RegisterPage = () => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const user = Object.fromEntries(formData.entries());
-    console.log(user, "User");
 
     const { data, error } = await authClient.signUp.email({
       email: user.email,
@@ -53,19 +53,16 @@ const RegisterPage = () => {
       password: user.password,
       image: user.image,
     });
-
-    console.log(data, error);
-
-    // if (data) {
-    //   toast.success(
-    //     `${data.name}, you have successfully registered your account.`,
-    //   );
-    // }
-    // if (error) {
-    //   toast.error(`${error.message}`);
-    // }
-
-    // toast.success("Form submitted");
+    if (data) {
+      toast.success(
+        `${user.name}, you have successfully registered your account.`,
+      );
+    }
+    if (error) {
+      toast.error(`${error.message}`);
+      return;
+    }
+    redirect("/");
   };
 
   return (

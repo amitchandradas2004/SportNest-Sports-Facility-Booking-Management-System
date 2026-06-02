@@ -12,8 +12,18 @@ import { ImProfile } from "react-icons/im";
 import { FaHome } from "react-icons/fa";
 import { FaReplyAll, FaStore, FaWindowRestore } from "react-icons/fa6";
 import { VscDebugStart } from "react-icons/vsc";
+import { authClient } from "@/lib/auth-client";
+import { redirect } from "next/navigation";
+import toast from "react-hot-toast";
+
 const Navbar = () => {
-  const user = false;
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
+  const handleLogout = async () => {
+    await authClient.signOut();
+    toast.success(`${user.name}, you have successfully logged Out.`);
+    redirect("/");
+  };
   return (
     <header className="fixed top-0 left-0 z-50 w-full backdrop-blur-xl shadow-xl border-b border-white/10 bg-white dark:bg-black">
       <nav className="mx-auto flex h-13 container items-center justify-between  px-6 ">
@@ -94,7 +104,7 @@ const Navbar = () => {
               </Link>
             </div>
           ) : (
-            <UserDropdown />
+            <UserDropdown user={user} />
           )}
         </div>
 
@@ -108,6 +118,7 @@ const Navbar = () => {
             <TiThMenu />
           </Button>
 
+          {/* Small devices */}
           <Dropdown.Popover className="min-w-60 p-3">
             {!user ? (
               <Dropdown.Menu>
@@ -199,13 +210,18 @@ const Navbar = () => {
                     Profile
                   </Link>
                 </Dropdown.Item>
-
                 <Dropdown.Item id="theme" className="pl-0">
                   <ThemeToggle />
                 </Dropdown.Item>
                 <Separator />
-                <Dropdown.Item className="text-red-400">
-                  Logout <LuLogOut />
+                <Dropdown.Item className="text-red-400 p-0">
+                  <Button
+                    onClick={handleLogout}
+                    variant="danger"
+                    className={"w-full"}
+                  >
+                    Logout <LuLogOut />
+                  </Button>
                 </Dropdown.Item>
               </Dropdown.Menu>
             )}

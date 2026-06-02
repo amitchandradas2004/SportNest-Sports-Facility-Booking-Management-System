@@ -20,6 +20,7 @@ import { AiOutlineMail } from "react-icons/ai";
 import { FaLink, FaLock } from "react-icons/fa6";
 import { GrLogin } from "react-icons/gr";
 import { IoMdLogIn } from "react-icons/io";
+import { redirect } from "next/navigation";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -47,27 +48,23 @@ const LoginPage = () => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const user = Object.fromEntries(formData.entries());
-    console.log(user, "User");
-
-    // const { data, error } = await authClient.signUp.email({
-    //   email: user.email,
-    //   name: user.name,
-    //   password: user.password,
-    //   image: user.image,
-    // });
+    const { data, error } = await authClient.signIn.email({
+      email: user.email,
+      password: user.password,
+    });
 
     // console.log(data, error);
 
-    // if (data) {
-    //   toast.success(
-    //     `${data.name}, you have successfully registered your account.`,
-    //   );
-    // }
-    // if (error) {
-    //   toast.error(`${error.message}`);
-    // }
-
-    // toast.success("Form submitted");
+    if (data) {
+      toast.success(
+        `${data.user.name}, you have successfully logged in your account.`,
+      );
+    }
+    if (error) {
+      toast.error(`${error.message}`);
+      return;
+    }
+    redirect("/");
   };
 
   return (
