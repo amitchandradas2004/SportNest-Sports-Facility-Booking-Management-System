@@ -3,10 +3,15 @@
 import Link from "next/link";
 import { Button, Dropdown, Separator } from "@heroui/react";
 import { LuLogOut } from "react-icons/lu";
-import { IoFootballOutline } from "react-icons/io5";
+import { IoFootballOutline, IoSettingsOutline } from "react-icons/io5";
 import UserDropdown from "./UserDropDown";
 import { TiThMenu } from "react-icons/ti";
 import { ThemeToggle } from "../ThemeToggle";
+import { IoMdAdd } from "react-icons/io";
+import { ImProfile } from "react-icons/im";
+import { FaHome } from "react-icons/fa";
+import { FaReplyAll, FaStore, FaWindowRestore } from "react-icons/fa6";
+import { VscDebugStart } from "react-icons/vsc";
 const Navbar = () => {
   const user = true;
   return (
@@ -82,7 +87,8 @@ const Navbar = () => {
             <div className="flex items-center gap-2">
               <ThemeToggle />
               <Link href={"/signup"}>
-                <Button className="rounded-full border border-white/20 px-5 py-2 text-sm font-medium transition">
+                <Button className="rounded-full border border-white/20 px-5 py-2 text-sm font-medium transition flex items-center gap-2">
+                  <VscDebugStart />
                   Get Started
                 </Button>
               </Link>
@@ -108,28 +114,31 @@ const Navbar = () => {
                 <Dropdown.Item id="home" className="p-0 ">
                   <Link
                     href="/"
-                    className="w-full block   p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600"
+                    className="w-full block  flex items-center gap-2 p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600"
                   >
+                    <FaHome />
                     Home
                   </Link>
                 </Dropdown.Item>
                 <Dropdown.Item id="all-facilities" className="p-0 ">
                   <Link
                     href="/allFacilities"
-                    className="w-full block   p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600"
+                    className="w-full block flex items-center gap-2 p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600"
                   >
+                    <FaWindowRestore />
                     All Facilities
                   </Link>
                 </Dropdown.Item>
-                <Dropdown.Item id="theme">
+                <Dropdown.Item id="theme" className="pl-0">
                   <ThemeToggle />
                 </Dropdown.Item>
 
                 <Dropdown.Item id="get-started" className="  p-0 ">
                   <Link
                     href="/signup"
-                    className="w-full block   p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600"
+                    className="w-full block  flex items-center gap-2 p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600"
                   >
+                    <VscDebugStart />
                     Get Started
                   </Link>
                 </Dropdown.Item>
@@ -139,61 +148,59 @@ const Navbar = () => {
                 <Dropdown.Item id="home" className="  p-0 ">
                   <Link
                     href="/"
-                    className="w-full block   p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600"
+                    className="w-full block flex items-center gap-2 p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600"
                   >
+                    <FaHome />
                     Home
                   </Link>
                 </Dropdown.Item>
                 <Dropdown.Item id="all-facilities" className="  p-0 ">
                   <Link
                     href="/allFacilities"
-                    className="w-full block   p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600"
+                    className="w-full block  flex items-center gap-2 p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600"
                   >
+                    <FaReplyAll />
                     All Facilities
                   </Link>
                 </Dropdown.Item>
                 <Dropdown.Item id="my-bookings" className="  p-0 ">
                   <Link
                     href="/my-bookings"
-                    className="w-full block   p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600"
+                    className="w-full block flex items-center gap-2  p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600"
                   >
-                    My Bookings
-                  </Link>
-                </Dropdown.Item>
-                <Dropdown.Item id="my-bookings" className="  p-0 ">
-                  <Link
-                    href="/my-bookings"
-                    className="w-full block   p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600"
-                  >
+                    <FaStore />
                     My Bookings
                   </Link>
                 </Dropdown.Item>
                 <Dropdown.Item id="add-facility" className="  p-0 ">
                   <Link
                     href="/addFacility"
-                    className="w-full block   p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600"
+                    className="w-full block  flex items-center gap-2 p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600"
                   >
+                    <IoMdAdd />
                     Add Facility
                   </Link>
                 </Dropdown.Item>
                 <Dropdown.Item id="manage-facilities" className="  p-0 ">
                   <Link
                     href="/manageFacilities"
-                    className="w-full block   p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600"
+                    className="w-full block p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600 flex items-center gap-2"
                   >
+                    <IoSettingsOutline />
                     Manage My Facilities
                   </Link>
                 </Dropdown.Item>
                 <Dropdown.Item id="profile" className="  p-0 ">
                   <Link
                     href="/profile"
-                    className="w-full block   p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600"
+                    className="w-full block flex items-center gap-2 p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600"
                   >
+                    <ImProfile />
                     Profile
                   </Link>
                 </Dropdown.Item>
 
-                <Dropdown.Item id="theme">
+                <Dropdown.Item id="theme" className="pl-0">
                   <ThemeToggle />
                 </Dropdown.Item>
                 <Separator />

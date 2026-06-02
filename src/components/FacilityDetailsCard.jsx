@@ -14,6 +14,18 @@ import {
   Form,
 } from "@heroui/react";
 import Image from "next/image";
+import Link from "next/link";
+import { FaArrowLeftLong, FaRegBookmark } from "react-icons/fa6";
+import { SlCalender } from "react-icons/sl";
+import { IoIosTimer } from "react-icons/io";
+import { GiConfirmed, GiHourglass } from "react-icons/gi";
+import {
+  MdDeleteForever,
+  MdLocationPin,
+  MdReduceCapacity,
+} from "react-icons/md";
+import { IoPricetagsOutline } from "react-icons/io5";
+import { EditModal } from "./EditModal";
 
 export default function FacilityDetails({ facility }) {
   const [hours, setHours] = useState(1);
@@ -28,12 +40,19 @@ export default function FacilityDetails({ facility }) {
           transition={{ duration: 0.5 }}
         >
           <Card className="overflow-hidden">
+            <Link href={"/allFacilities"} className="flex items-center gap-2">
+              <Button className={"bg-indigo-600 w-45 hover:bg-indigo-700"}>
+                {" "}
+                <FaArrowLeftLong />
+                Back to Facilities
+              </Button>
+            </Link>
             <Image
               src={facility.image}
               alt={facility.name}
               width={1000}
               height={600}
-              className="w-full h-[400px] object-cover rounded-xl"
+              className="w-full h-100 object-cover rounded-xl"
             />
           </Card>
 
@@ -47,32 +66,55 @@ export default function FacilityDetails({ facility }) {
             </h1>
 
             <div className="grid grid-cols-2 gap-4 mt-6">
-              <Card className="p-4">
-                <p className="text-sm text-default-500">Location</p>
+              <Card className="p-4 rounded-xl">
+                <p className="text-sm text-default-500 flex items-center gap-2 opacity-60">
+                  {" "}
+                  <MdLocationPin />
+                  Location
+                </p>
                 <p className="font-semibold">{facility.location}</p>
               </Card>
 
-              <Card className="p-4">
-                <p className="text-sm text-default-500">Capacity</p>
+              <Card className="p-4 rounded-xl">
+                <p className="text-sm text-default-500 flex items-center gap-2 opacity-60">
+                  <MdReduceCapacity />
+                  Capacity
+                </p>
                 <p className="font-semibold">{facility.capacity} Players</p>
               </Card>
 
-              <Card className="p-4">
-                <p className="text-sm text-default-500">Price</p>
+              <Card className="p-4 rounded-xl">
+                <p className="text-sm text-default-500 flex items-center gap-2 opacity-60">
+                  <IoPricetagsOutline />
+                  Price
+                </p>
                 <p className="font-semibold">${facility.price_per_hour}/hour</p>
               </Card>
 
-              <Card className="p-4">
-                <p className="text-sm text-default-500">Bookings</p>
+              <Card className="p-4 rounded-xl">
+                <p className="text-sm text-default-500 flex items-center gap-2 opacity-60">
+                  <FaRegBookmark />
+                  Bookings
+                </p>
                 <p className="font-semibold">{facility.booking_count}</p>
               </Card>
             </div>
 
-            <Card className="p-5 mt-5">
-              <h3 className="mb-2 text-lg font-semibold">
+            <Card className="p-5 mt-5 rounded-xl">
+              <h3 className="mb-2 text-lg font-semibold  opacity-60">
                 About this Facility
               </h3>
               <p className="text-default-600">{facility.description}</p>
+            </Card>
+            <Card className="p-5 mt-5 rounded-xl">
+              <div className="flex flex-col md:flex-row gap-3">
+                {" "}
+                <EditModal facility={facility} />
+                <Button variant="danger" className={"w-full"}>
+                  <MdDeleteForever />
+                  Delete
+                </Button>
+              </div>
             </Card>
           </motion.div>
         </motion.div>
@@ -104,7 +146,10 @@ export default function FacilityDetails({ facility }) {
 
               {/* Booking Date */}
               <DateField name="date" type="date" isRequired>
-                <Label>Booking Date</Label>
+                <Label className="flex items-center gap-2">
+                  <SlCalender />
+                  Booking Date
+                </Label>
                 <DateField.Group>
                   <DateField.Input>
                     {(segment) => <DateField.Segment segment={segment} />}
@@ -118,7 +163,10 @@ export default function FacilityDetails({ facility }) {
                 placeholder="e.g. 08:00 AM - 09:00 AM"
                 isRequired
               >
-                <Label>Available Time Slots</Label>
+                <Label className="flex items-center gap-2">
+                  <IoIosTimer />
+                  Available Time Slots
+                </Label>
                 <Select.Trigger>
                   <Select.Value />
                   <Select.Indicator />
@@ -148,7 +196,10 @@ export default function FacilityDetails({ facility }) {
               {/* Hours */}
 
               <TextField isRequired name="duration" type="number">
-                <Label>Duration (Hours)</Label>
+                <Label className="flex items-center gap-2">
+                  <GiHourglass />
+                  Duration (Hours)
+                </Label>
                 <Input
                   placeholder="Enter Your Facility Name"
                   min={1}
@@ -160,12 +211,18 @@ export default function FacilityDetails({ facility }) {
               {/* Total Price */}
               <div className="rounded-xl bg-success-50 p-5 border border-slate-500 bg-indigo-50 dark:bg-[#18181B]">
                 <div className="flex justify-between">
-                  <span>Price Per Hour</span>
+                  <span className="flex items-center gap-2">
+                    <IoPricetagsOutline />
+                    Price Per Hour
+                  </span>
                   <span>${facility?.price_per_hour}</span>
                 </div>
 
                 <div className="flex justify-between mt-2">
-                  <span>Duration</span>
+                  <span className="flex items-center gap-2">
+                    <GiHourglass />
+                    Duration
+                  </span>
                   <span>{hours} hr</span>
                 </div>
 
@@ -181,6 +238,7 @@ export default function FacilityDetails({ facility }) {
                 size="lg"
                 className="w-full bg-indigo-600 hover:bg-indigo-700"
               >
+                <GiConfirmed />
                 Confirm Booking
               </Button>
             </Form>
