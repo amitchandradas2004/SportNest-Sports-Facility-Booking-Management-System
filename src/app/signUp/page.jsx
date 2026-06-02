@@ -65,6 +65,12 @@ const RegisterPage = () => {
     redirect("/");
   };
 
+  const handleGoogleSignIn = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+    // toast.success("Sign In  Success");
+  };
   return (
     <div className="relative min-h-screen flex items-center justify-center px-3 overflow-hidden py-20">
       <motion.div
@@ -178,30 +184,32 @@ const RegisterPage = () => {
               </Button>
             </motion.div>
           </motion.div>
-
-          {/* Divider */}
-          <div className="flex items-center gap-2 text-xs text-gray-500">
-            <div className="flex-1 h-px bg-gray-300" />
-            OR CONTINUE WITH
-            <div className="flex-1 h-px bg-gray-300" />
-          </div>
-
-          {/* Google Button */}
-          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
-            <Button className="w-full rounded-full border hover:bg-indigo-600">
-              <FcGoogle size={20} />
-              Continue with Google
-            </Button>
-          </motion.div>
-
-          {/* Login link */}
-          <p className="text-center text-sm">
-            Already have an account?{" "}
-            <Link href="/login" className="text-red-500">
-              Login
-            </Link>
-          </p>
         </Form>
+        {/* Divider */}
+        <div className="flex items-center gap-2 text-xs text-gray-500 my-3">
+          <div className="flex-1 h-px bg-gray-300" />
+          OR CONTINUE WITH
+          <div className="flex-1 h-px bg-gray-300" />
+        </div>
+
+        {/* Google Button */}
+        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
+          <Button
+            onClick={handleGoogleSignIn}
+            className="w-full rounded-full border hover:bg-indigo-600"
+          >
+            <FcGoogle size={20} />
+            Continue with Google
+          </Button>
+        </motion.div>
+
+        {/* Login link */}
+        <p className="text-center text-sm mt-3">
+          Already have an account?{" "}
+          <Link href="/login" className="text-red-500">
+            Login
+          </Link>
+        </p>
       </motion.div>
     </div>
   );

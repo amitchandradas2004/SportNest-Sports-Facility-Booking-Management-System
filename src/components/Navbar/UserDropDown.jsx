@@ -33,6 +33,7 @@ const UserDropDown = () => {
             height={60}
             width={60}
             className="rounded-full shadow border"
+            referrerPolicy="no-referrer"
           />
         ) : (
           <FaUserAlt />

@@ -66,7 +66,12 @@ const LoginPage = () => {
     }
     redirect("/");
   };
-
+  const handleGoogleSignIn = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+    // toast.success("Sign In  Success");
+  };
   return (
     <div className="relative min-h-screen flex items-center justify-center px-3 overflow-hidden py-20">
       <motion.div
@@ -152,27 +157,29 @@ const LoginPage = () => {
               </Button>
             </motion.div>
           </motion.div>
-
-          <div className="flex items-center gap-2 text-xs text-gray-500">
-            <div className="flex-1 h-px bg-gray-300" />
-            OR CONTINUE WITH
-            <div className="flex-1 h-px bg-gray-300" />
-          </div>
-
-          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
-            <Button className="w-full rounded-full border hover:bg-indigo-600">
-              <FcGoogle size={20} />
-              Continue with Google
-            </Button>
-          </motion.div>
-
-          <p className="text-center text-sm">
-            Do not have an account?{" "}
-            <Link href="/signUp" className="text-red-500">
-              Register
-            </Link>
-          </p>
         </Form>
+        <div className="flex items-center gap-2 text-xs text-gray-500">
+          <div className="flex-1 h-px bg-gray-300" />
+          OR CONTINUE WITH
+          <div className="flex-1 h-px bg-gray-300" />
+        </div>
+
+        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
+          <Button
+            onClick={handleGoogleSignIn}
+            className="w-full rounded-full border hover:bg-indigo-600"
+          >
+            <FcGoogle size={20} />
+            Continue with Google
+          </Button>
+        </motion.div>
+
+        <p className="text-center text-sm">
+          Do not have an account?{" "}
+          <Link href="/signUp" className="text-red-500">
+            Register
+          </Link>
+        </p>
       </motion.div>
     </div>
   );
