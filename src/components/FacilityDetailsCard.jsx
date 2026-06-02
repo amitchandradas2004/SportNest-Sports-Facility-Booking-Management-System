@@ -25,6 +25,7 @@ import { EditModal } from "./EditModal";
 import { DeleteFacility } from "./DeleteFacility";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
+import { redirect } from "next/navigation";
 
 export default function FacilityDetails({ facility }) {
   const [hours, setHours] = useState(1);
@@ -59,15 +60,8 @@ export default function FacilityDetails({ facility }) {
       body: JSON.stringify(bookingData),
     });
     const data = await res.json();
-    console.log(data);
-
-    // if (data) {
-    //   toast.success(
-    //     `${data.name}, you have successfully registered your account.`,
-    //   );
-    // }
-
-    // redirect("/bookings");
+    toast.success("Booking Confirmed");
+    redirect("/myBookings");
   };
 
   return (

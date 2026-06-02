@@ -147,7 +147,7 @@ const LoginPage = () => {
             </motion.div>
 
             {/* Submit Button */}
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }} className="mt-2">
               <Button
                 type="submit"
                 className="w-full bg-indigo-600 rounded-full"
@@ -158,13 +158,13 @@ const LoginPage = () => {
             </motion.div>
           </motion.div>
         </Form>
-        <div className="flex items-center gap-2 text-xs text-gray-500">
+        <div className="flex items-center gap-2 text-xs text-gray-500 my-3">
           <div className="flex-1 h-px bg-gray-300" />
           OR CONTINUE WITH
           <div className="flex-1 h-px bg-gray-300" />
         </div>
 
-        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
+        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }} >
           <Button
             onClick={handleGoogleSignIn}
             className="w-full rounded-full border hover:bg-indigo-600"
@@ -174,7 +174,7 @@ const LoginPage = () => {
           </Button>
         </motion.div>
 
-        <p className="text-center text-sm">
+        <p className="text-center text-sm mt-3">
           Do not have an account?{" "}
           <Link href="/signUp" className="text-red-500">
             Register
