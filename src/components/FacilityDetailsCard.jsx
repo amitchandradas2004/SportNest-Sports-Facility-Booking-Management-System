@@ -19,16 +19,56 @@ import { FaArrowLeftLong, FaRegBookmark } from "react-icons/fa6";
 import { SlCalender } from "react-icons/sl";
 import { IoIosTimer } from "react-icons/io";
 import { GiConfirmed, GiHourglass } from "react-icons/gi";
-import {
-   MdLocationPin,
-  MdReduceCapacity,
-} from "react-icons/md";
+import { MdLocationPin, MdReduceCapacity } from "react-icons/md";
 import { IoPricetagsOutline } from "react-icons/io5";
 import { EditModal } from "./EditModal";
 import { DeleteFacility } from "./DeleteFacility";
+import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
 
 export default function FacilityDetails({ facility }) {
   const [hours, setHours] = useState(1);
+  const [bookingDate, setBookingDate] = useState(null);
+  const totalPrice = facility.price_per_hour * hours;
+  const { _id, name, location, image } = facility;
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const formValues = Object.fromEntries(formData.entries());
+
+    const bookingData = {
+      facility_id: _id,
+      facility_name: name,
+      facility_location: location,
+      facility_image: image,
+      user_email: user?.email,
+      booking_date: new Date(bookingDate),
+      time_slot: formValues.time,
+      hours: Number(formValues.hours),
+      total_price: facility.price_per_hour * Number(formValues.hours),
+    };
+
+    const res = await fetch(`http://localhost:5000/booking`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(bookingData),
+    });
+    const data = await res.json();
+    console.log(data);
+
+    // if (data) {
+    //   toast.success(
+    //     `${data.name}, you have successfully registered your account.`,
+    //   );
+    // }
+
+    // redirect("/bookings");
+  };
 
   return (
     <div className="container mx-auto px-4 py-10">
@@ -130,7 +170,7 @@ export default function FacilityDetails({ facility }) {
               </p>
             </div>
 
-            <Form className="space-y-5 flex  flex-col">
+            <Form onSubmit={onSubmit} className="space-y-5 flex  flex-col">
               {/* Facility Name */}
               <TextField isRequired name="name" type="text">
                 <Label>Facility Name</Label>
@@ -142,7 +182,12 @@ export default function FacilityDetails({ facility }) {
               </TextField>
 
               {/* Booking Date */}
-              <DateField name="date" type="date" isRequired>
+              <DateField
+                name="date"
+                type="date"
+                onChange={setBookingDate}
+                isRequired
+              >
                 <Label className="flex items-center gap-2">
                   <SlCalender />
                   Booking Date
@@ -192,7 +237,7 @@ export default function FacilityDetails({ facility }) {
 
               {/* Hours */}
 
-              <TextField isRequired name="duration" type="number">
+              <TextField isRequired name="hours" type="number">
                 <Label className="flex items-center gap-2">
                   <GiHourglass />
                   Duration (Hours)
@@ -222,16 +267,15 @@ export default function FacilityDetails({ facility }) {
                   </span>
                   <span>{hours} hr</span>
                 </div>
-
                 <div className="border-t mt-3 pt-3 flex justify-between">
                   <span className="font-semibold">Total Price</span>
                   <span className="text-xl font-bold text-success">
-                    ${(facility?.price_per_hour || 0) * hours}
+                    {totalPrice}$
                   </span>
                 </div>
               </div>
-
               <Button
+                type="submit"
                 size="lg"
                 className="w-full bg-indigo-600 hover:bg-indigo-700"
               >

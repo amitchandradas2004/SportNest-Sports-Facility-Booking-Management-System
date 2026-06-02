@@ -70,7 +70,7 @@ const Navbar = () => {
                 All Facilities
               </Link>
               <Link
-                href="/allFacilities"
+                href="/myBookings"
                 className="font-medium transition hover:text-indigo-600"
               >
                 My Bookings
@@ -176,7 +176,7 @@ const Navbar = () => {
                 </Dropdown.Item>
                 <Dropdown.Item id="my-bookings" className="  p-0 ">
                   <Link
-                    href="/my-bookings"
+                    href="/myBookings"
                     className="w-full block flex items-center gap-2  p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600"
                   >
                     <FaStore />

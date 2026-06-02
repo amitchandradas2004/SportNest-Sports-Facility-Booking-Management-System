@@ -64,7 +64,7 @@ const UserDropDown = () => {
 
           <Dropdown.Item id="my-bookings" className="  p-0 ">
             <Link
-              href="/my-bookings"
+              href="/myBookings"
               className="w-full  flex items-center gap-2  p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600"
             >
               <FaStore />
