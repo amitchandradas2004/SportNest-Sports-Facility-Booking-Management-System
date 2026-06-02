@@ -13,7 +13,7 @@ import { FaHome } from "react-icons/fa";
 import { FaReplyAll, FaStore, FaWindowRestore } from "react-icons/fa6";
 import { VscDebugStart } from "react-icons/vsc";
 const Navbar = () => {
-  const user = true;
+  const user = false;
   return (
     <header className="fixed top-0 left-0 z-50 w-full backdrop-blur-xl shadow-xl border-b border-white/10 bg-white dark:bg-black">
       <nav className="mx-auto flex h-13 container items-center justify-between  px-6 ">
@@ -86,8 +86,8 @@ const Navbar = () => {
           {!user ? (
             <div className="flex items-center gap-2">
               <ThemeToggle />
-              <Link href={"/signup"}>
-                <Button className="rounded-full border border-white/20 px-5 py-2 text-sm font-medium transition flex items-center gap-2">
+              <Link href={"/signUp"}>
+                <Button className="rounded-full border border-white/20 px-5 py-2 text-sm font-medium transition flex items-center gap-2 bg-indigo-600">
                   <VscDebugStart />
                   Get Started
                 </Button>
@@ -135,7 +135,7 @@ const Navbar = () => {
 
                 <Dropdown.Item id="get-started" className="  p-0 ">
                   <Link
-                    href="/signup"
+                    href="/signUp"
                     className="w-full block  flex items-center gap-2 p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600"
                   >
                     <VscDebugStart />

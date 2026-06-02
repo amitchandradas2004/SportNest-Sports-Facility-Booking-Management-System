@@ -79,7 +79,7 @@ const Banner = () => {
           className="mt-8"
         >
           <Link href="/allFacilities">
-            <Button className="bg-indigo-600 text-white shadow-lg transition-all hover:bg-indigo-700">
+            <Button className="bg-indigo-600 text-white shadow-lg transition-all hover:bg-indigo-700 h-10 w-55">
               Explore All Facilities
               <motion.span
                 animate={{ x: [0, 5, 0] }}
