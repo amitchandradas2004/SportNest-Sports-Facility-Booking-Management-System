@@ -13,6 +13,7 @@ import {
 } from "@heroui/react";
 
 import toast from "react-hot-toast";
+import { redirect } from "next/navigation";
 
 const AddFacilityPage = () => {
   const onSubmit = async (e) => {
@@ -29,6 +30,7 @@ const AddFacilityPage = () => {
     const data = await res.json();
     // console.log(data);
     toast.success(`Facility added`);
+    redirect("/allFacilities");
   };
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 py-24 px-4">

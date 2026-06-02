@@ -20,12 +20,12 @@ import { SlCalender } from "react-icons/sl";
 import { IoIosTimer } from "react-icons/io";
 import { GiConfirmed, GiHourglass } from "react-icons/gi";
 import {
-  MdDeleteForever,
-  MdLocationPin,
+   MdLocationPin,
   MdReduceCapacity,
 } from "react-icons/md";
 import { IoPricetagsOutline } from "react-icons/io5";
 import { EditModal } from "./EditModal";
+import { DeleteFacility } from "./DeleteFacility";
 
 export default function FacilityDetails({ facility }) {
   const [hours, setHours] = useState(1);
@@ -110,10 +110,7 @@ export default function FacilityDetails({ facility }) {
               <div className="flex flex-col md:flex-row gap-3">
                 {" "}
                 <EditModal facility={facility} />
-                <Button variant="danger" className={"w-full"}>
-                  <MdDeleteForever />
-                  Delete
-                </Button>
+                <DeleteFacility facility={facility} />
               </div>
             </Card>
           </motion.div>
