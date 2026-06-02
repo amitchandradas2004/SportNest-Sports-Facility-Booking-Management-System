@@ -8,6 +8,7 @@ import { MapPin, Users, Clock3, CalendarCheck } from "lucide-react";
 import { HiMiniArrowTopRightOnSquare } from "react-icons/hi2";
 
 const FacilityCard = ({ facility }) => {
+ 
   const {
     _id,
     name,
