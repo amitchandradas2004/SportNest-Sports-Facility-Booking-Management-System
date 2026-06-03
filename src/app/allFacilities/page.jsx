@@ -4,10 +4,15 @@ export const metadata = {
   description: "SportNest All Facilities Page",
 };
 const AllFacilitiesPage = async () => {
-  const res = await fetch(`https://sport-nest-server-alpha.vercel.app/facility`);
-  const facilitys = await res.json();
+  const res = await fetch(
+    `https://sport-nest-server-alpha.vercel.app/facility`,
+    {
+      cache: "no-store",
+    },
+  );
 
-  return (
+  const facilitys = await res.json();
+   return (
     <div className="py-20 container mx-auto px-3 md:px-0">
       <div className="text-center space-y-3 overflow-hidden">
         <div>

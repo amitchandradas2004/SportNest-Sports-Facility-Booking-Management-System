@@ -10,7 +10,7 @@ const SearchCard = ({ facilitys }) => {
   const filteredFacilities = facilitys.filter((facility) =>
     facility.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
-
+ 
   return (
     <>
       <div className="flex justify-center px-3 md:px-0">
