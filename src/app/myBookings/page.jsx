@@ -14,7 +14,7 @@ const MyBookingsPage = async () => {
     headers: await headers(),
   });
   const user = session?.user;
-  const res = await fetch(`${process.env.SERVER_URL}/booking/${user?.email}`, {
+  const res = await fetch(`https://sport-nest-server-alpha.vercel.app/booking/${user?.email}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },

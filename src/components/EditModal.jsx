@@ -34,7 +34,7 @@ export function EditModal({ facility }) {
     const facility = Object.fromEntries(formData.entries());
     const { data: tokenData } = await authClient.token();
 
-    const res = await fetch(`${process.env.SERVER_URL}/facility/${_id}`, {
+    const res = await fetch(`https://sport-nest-server-alpha.vercel.app/facility/${_id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

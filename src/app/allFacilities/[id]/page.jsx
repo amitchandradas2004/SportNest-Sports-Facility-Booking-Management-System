@@ -9,7 +9,7 @@ const FacilityDetailsPage = async ({ params }) => {
   });
   // console.log(token, "token");
 
-  const res = await fetch(`${process.env.SERVER_URL}/facility/${id}`, {
+  const res = await fetch(`https://sport-nest-server-alpha.vercel.app/facility/${id}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },

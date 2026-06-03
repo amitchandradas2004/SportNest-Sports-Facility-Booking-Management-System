@@ -22,7 +22,7 @@ const AddFacilityPage = () => {
     const facility = Object.fromEntries(formData.entries());
     const { data: tokenData } = await authClient.token();
 
-    const res = await fetch(`${process.env.SERVER_URL}/facility`, {
+    const res = await fetch(`https://sport-nest-server-alpha.vercel.app/facility`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

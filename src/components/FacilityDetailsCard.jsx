@@ -54,14 +54,17 @@ export default function FacilityDetails({ facility }) {
 
     const { data: tokenData } = await authClient.token();
 
-    const res = await fetch(`${process.env.SERVER_URL}/booking`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${tokenData?.token}`,
+    const res = await fetch(
+      `https://sport-nest-server-alpha.vercel.app/booking`,
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${tokenData?.token}`,
+        },
+        body: JSON.stringify(bookingData),
       },
-      body: JSON.stringify(bookingData),
-    });
+    );
     const data = await res.json();
     toast.success("Booking Confirmed");
     redirect("/myBookings");

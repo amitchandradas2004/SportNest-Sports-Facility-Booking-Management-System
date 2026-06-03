@@ -10,7 +10,7 @@ export function DeleteBooking({ booking }) {
 
   const handleBookingDelete = async () => {
     const { data: tokenData } = await authClient.token();
-    const res = await fetch(`${process.env.SERVER_URL}/booking/${_id}`, {
+    const res = await fetch(`https://sport-nest-server-alpha.vercel.app/booking/${_id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",

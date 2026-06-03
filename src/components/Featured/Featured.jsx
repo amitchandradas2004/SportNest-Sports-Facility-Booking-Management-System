@@ -2,7 +2,7 @@ import FacilityCard from "../FacilityCard";
 import FeaturedTitle from "./FeaturedTitle";
 
 const Featured = async () => {
-  const res = await fetch(`${process.env.SERVER_URL}/featured`);
+  const res = await fetch(`https://sport-nest-server-alpha.vercel.app/featured`);
   const facilitys = await res.json();
 
   return (
