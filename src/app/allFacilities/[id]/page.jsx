@@ -1,14 +1,24 @@
 import FacilityDetails from "@/components/FacilityDetailsCard";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 const FacilityDetailsPage = async ({ params }) => {
   const { id } = await params;
+  const {token} = await auth.api.getToken({
+    headers: await headers(),
+  });
+  // console.log(token, "token");
 
-  const res = await fetch(`http://localhost:5000/facility/${id}`);
+  const res = await fetch(`${process.env.SERVER_URL}/facility/${id}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
   const facility = await res.json();
 
   return (
     <div className="mt-10">
-      <FacilityDetails   facility={facility} />
+      <FacilityDetails facility={facility} />
     </div>
   );
 };

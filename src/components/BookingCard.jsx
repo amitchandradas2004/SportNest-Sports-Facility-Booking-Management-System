@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { MdLocationPin, MdOutlineCancel } from "react-icons/md";
+import { MdLocationPin } from "react-icons/md";
 import { SlCalender } from "react-icons/sl";
 import { IoIosTimer } from "react-icons/io";
 import { IoPricetagsOutline } from "react-icons/io5";

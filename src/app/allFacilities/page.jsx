@@ -4,7 +4,7 @@ export const metadata = {
   description: "SportNest All Facilities Page",
 };
 const AllFacilitiesPage = async () => {
-  const res = await fetch(`http://localhost:5000/facility`);
+  const res = await fetch(`${process.env.SERVER_URL}/facility`);
   const facilitys = await res.json();
 
   return (

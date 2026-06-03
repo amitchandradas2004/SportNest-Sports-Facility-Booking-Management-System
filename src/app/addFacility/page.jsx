@@ -8,22 +8,25 @@ import {
   Label,
   ListBox,
   Select,
-  TextArea,
   TextField,
 } from "@heroui/react";
 
 import toast from "react-hot-toast";
 import { redirect } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 
 const AddFacilityPage = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const facility = Object.fromEntries(formData.entries());
-    const res = await fetch(`http://localhost:5000/facility`, {
+    const { data: tokenData } = await authClient.token();
+
+    const res = await fetch(`${process.env.SERVER_URL}/facility`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${tokenData?.token}`,
       },
       body: JSON.stringify(facility),
     });

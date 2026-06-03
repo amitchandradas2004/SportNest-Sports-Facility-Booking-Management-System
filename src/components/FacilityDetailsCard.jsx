@@ -52,10 +52,13 @@ export default function FacilityDetails({ facility }) {
       total_price: facility.price_per_hour * Number(formValues.hours),
     };
 
-    const res = await fetch(`http://localhost:5000/booking`, {
+    const { data: tokenData } = await authClient.token();
+
+    const res = await fetch(`${process.env.SERVER_URL}/booking`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${tokenData?.token}`,
       },
       body: JSON.stringify(bookingData),
     });

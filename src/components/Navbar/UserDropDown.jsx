@@ -13,7 +13,7 @@ import Image from "next/image";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 import { redirect } from "next/navigation";
-
+import UserIcon from "@/assets/User.png";
 const UserDropDown = () => {
   const { data: session } = authClient.useSession();
   const user = session?.user;
@@ -36,7 +36,14 @@ const UserDropDown = () => {
             referrerPolicy="no-referrer"
           />
         ) : (
-          <FaUserAlt />
+          <Image
+            src={UserIcon}
+            alt={"User name"}
+            height={60}
+            width={60}
+            className="rounded-full shadow border"
+            referrerPolicy="no-referrer"
+          />
         )}
       </Button>
 

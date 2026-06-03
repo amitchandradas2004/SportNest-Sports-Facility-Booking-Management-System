@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import {
   Button,
   Input,
@@ -31,10 +32,13 @@ export function EditModal({ facility }) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const facility = Object.fromEntries(formData.entries());
-    const res = await fetch(`http://localhost:5000/facility/${_id}`, {
+    const { data: tokenData } = await authClient.token();
+
+    const res = await fetch(`${process.env.SERVER_URL}/facility/${_id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${tokenData?.token}`,
       },
       body: JSON.stringify(facility),
     });
