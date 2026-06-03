@@ -82,7 +82,7 @@ const Navbar = () => {
                 Add Facility
               </Link>
               <Link
-                href="/allFacilities"
+                href="/manageFacilities"
                 className="font-medium transition hover:text-indigo-600"
               >
                 Manage My Facilities
@@ -147,7 +147,7 @@ const Navbar = () => {
                 <Dropdown.Item id="get-started" className="  p-0 ">
                   <Link
                     href="/signUp"
-                    className="w-full block  flex items-center gap-2 p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600"
+                    className="w-full flex items-center gap-2 p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600"
                   >
                     <VscDebugStart />
                     Get Started
@@ -177,7 +177,7 @@ const Navbar = () => {
                 <Dropdown.Item id="my-bookings" className="  p-0 ">
                   <Link
                     href="/myBookings"
-                    className="w-full block flex items-center gap-2  p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600"
+                    className="w-full flex items-center gap-2  p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600"
                   >
                     <FaStore />
                     My Bookings
@@ -195,7 +195,7 @@ const Navbar = () => {
                 <Dropdown.Item id="manage-facilities" className="  p-0 ">
                   <Link
                     href="/manageFacilities"
-                    className="w-full block p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600 flex items-center gap-2"
+                    className="w-full p-2 rounded-2xl hover:bg-gray-200 hover:text-indigo-600 flex items-center gap-2"
                   >
                     <IoSettingsOutline />
                     Manage My Facilities

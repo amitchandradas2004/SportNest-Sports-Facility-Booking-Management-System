@@ -59,7 +59,7 @@ const FacilityCard = ({ facility }) => {
       {/* Content */}
       <div className="space-y-4 p-5">
         <div>
-          <h2 className="line-clamp-1 text-2xl font-bold">{name}</h2>
+          <h2 className="line-clamp-1 text-2xl font-bold text-start">{name}</h2>
 
           <div className="mt-2 flex items-center gap-2 text-sm text-gray-500">
             <MapPin size={16} />
@@ -67,7 +67,7 @@ const FacilityCard = ({ facility }) => {
           </div>
         </div>
 
-        <p className="line-clamp-2 text-sm text-gray-600">{description}</p>
+        <p className="line-clamp-2 text-sm text-gray-600 text-start">{description}</p>
 
         {/* Button */}
         <Link href={`/allFacilities/${_id}`}>
